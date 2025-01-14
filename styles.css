@@ -1,0 +1,552 @@
+/* ================================
+   공통 기본
+================================ */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  /* ================================
+     헤더
+  ================================ */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    border-bottom: 2px solid #ff6a00;
+  }
+  /* 로고 */
+  header .logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #fff;
+  }
+  header .logo .highlight {
+    color: #ff6a00;
+  }
+  
+  /* 햄버거 버튼: 기본 PC에선 숨김, 모바일에서 표시 */
+  #hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  /* PC 가로 메뉴 */
+  header .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* PC: 가로 배치 */
+    gap: 50px;
+  }
+  header .menu li {
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  header .menu li:hover {
+    color: #ff6a00;
+  }
+  
+  /* Open label */
+  header .open-label {
+    background-color: #ff6a00;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* 닫기 버튼 (X) - 기본: 안보이게 */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+    display: none; /* PC에서는 숨김 */
+  }
+  
+  /* 좌측 슬라이드 메뉴:
+     - 초기에는 화면 왼쪽밖(left:-250px)에 숨김
+     - .visible 시 left:30px 정도로 약간 띄워서 오픈
+     (요청하신 '좌측이랑 간격 좀 떨어뜨리기' 반영)
+  */
+  header .menu ul.left-slide {
+    position: fixed;
+    top: 0;
+    left: -250px; /* 처음엔 숨김 (폭 250px) */
+    width: 250px; /* 우측 폭도 조금 줄임 (너무 넓지 않도록) */
+    height: 100%;
+    background: #000;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 80px;
+    transition: left 0.3s ease;
+    z-index: 999;
+  }
+  header .menu ul.left-slide.visible {
+    left: 30px; /* 좌측과 약간 간격 두고 오픈 */
+  }
+  
+  /* ================================
+     인트로 섹션
+  ================================ */
+  #intro {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #000;
+  }
+  /* 로고 이미지 동그랗게 */
+  #intro .logo-container {
+    margin: 0 auto 20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #ff0000;
+  }
+  #intro .logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* 원조아바타 텍스트 */
+  #intro h2 {
+    font-size: 36px; 
+    margin: 20px 0 10px;
+    color: #fff;
+    line-height: 1.0;
+    /* 원하시는 대로 모바일에서도 줄어들지 않도록 -> 미디어쿼리에서 오버라이드 안함 */
+  }
+  #intro h2 .highlight-orange {
+    font-size: 36px; 
+    color: rgb(255, 138, 54);
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  /* 본문 텍스트 */
+  #intro p {
+    font-size: 24px;
+    color: #fff;
+    max-width: 600px;
+    margin: 10px auto 20px;
+  }
+  #intro p u {
+    text-decoration: underline;
+    color: rgb(255, 138, 54);
+  }
+  /* 배너 스타일 */
+  .banners {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  .banners a img {
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+  }
+  .banners a img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* ================================
+     info-section
+  ================================ */
+  #info-section {
+    background-color: #fff;
+    color: #000;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  #info-section .info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 500px;
+  }
+  #info-section .info-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #info-section .info-image img {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 40px 0 40px 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  #info-section .info-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    gap: 20px;
+    margin-top: -100px; /* PC 환경에서 약간의 레이아웃 */
+  }
+  #info-section .info-text h3 {
+    font-size: 32px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  #info-section .info-text h3 span {
+    color: #ff6a00;
+  }
+  #info-section .info-text p {
+    font-size: 24px;
+    line-height: 1.4;
+    color: #555;
+    margin-bottom: 0;
+  }
+  #info-section .info-highlight {
+    background-color: #ff6a00;
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: left;
+    max-width: 400px;
+  }
+  
+  /* ================================
+     community-section
+  ================================ */
+  #community-section {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  #community-section .community-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  /* 제목/본문 여백 */
+  #community-section h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+  #community-section h2 .highlight-orange {
+    color: #ff6a00;
+    font-weight: bold;
+  }
+  #community-section p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* 좌우 Flex 레이아웃 */
+  #community-section .community-images {
+    display: flex;        
+    gap: 10px;
+    width: 100%;          
+    height: 600px;  /* PC에서 고정 높이 */
+  }
+  /* 좌측 전체 컬럼 */
+  #community-section .left-col {
+    flex: 1;                
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  /* 좌측 상단 큰 이미지 */
+  #community-section .left-top {
+    flex: 2;                
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+  #community-section .left-top img {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+  }
+  /* 좌측 하단 작은 이미지 2장 */
+  #community-section .left-bottom {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+  }
+  #community-section .left-bottom img {
+    flex: 1;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+  /* 우측 큰 이미지 한 장 */
+  #community-section .right-col {
+    flex: 1; 
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+  #community-section .right-col img {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+  }
+  /* 버튼 */
+  #community-section .community-button {
+    margin-top: 20px;
+  }
+  #community-section .community-button button {
+    background-color: #ff6a00;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #community-section .community-button button:hover {
+    background-color: #e65c00;
+  }
+  
+  /* ================================
+     contact-section
+  ================================ */
+  #contact-section {
+    background-color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  #contact-section .contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  #contact-section h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+  #contact-section h2 .highlight-orange {
+    color: #ff6a00;
+    font-weight: bold;
+  }
+  #contact-section p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  /* Contact Buttons */
+  #contact-section .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  #contact-section .contact-button img {
+    width: 600px; 
+    height: 150px; 
+    object-fit: cover;
+    border: none;
+  }
+  
+  /* 
+    모바일에서만 <br> 효과를 주는 span 용 CSS 예:
+    PC: display: inline;
+    모바일: display: block
+  */
+  .break-mobile {
+    display: inline; 
+  }
+  .hide-pc {
+    display: none;  
+  }
+
+  /* GIF 이미지 컨테이너 스타일 */
+.gif-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.gif-container img {
+    width: 100%; /* 너비를 조정 */
+    max-width: 1024px; /* 최대 크기 설정 */
+    border-radius: 10px; /* 모서리를 둥글게 */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* 그림자 추가 */
+}
+  
+/* 푸터 스타일 */
+.footer {
+    background-color: #333; /* 어두운 회색 */
+    color: #ccc; /* 밝은 회색 */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    height: 50px;
+  }
+  
+  .footer p {
+    margin: 0;
+    margin-top: 10px;
+  }
+  
+
+  /* ================================
+     미디어 쿼리: 최대 너비 768px 이하
+  ================================ */
+  @media (max-width: 768px) {
+
+    /* 전체 폰트 크기 조정 */
+    body {
+      font-size: 14px;
+    }
+  
+    /* 헤더: 로고 왼쪽, 햄버거 오른쪽 */
+    header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .logo {
+      order: 1;
+    }
+    #hamburger-menu {
+      display: block;
+      order: 2;
+    }
+    .open-label {
+      order: 3;
+    }
+    
+    #intro h2 {
+        margin: 10px 0;   /* 상하 간격 더 줄이기 */
+        line-height: 0.5; /* 줄 간격 좁히기 */
+    }
+
+    /* PC용 가로 메뉴 숨기기, 대신 left-slide 활용 */
+    header .menu ul {
+      display: none;
+    }
+    header .menu ul.left-slide {
+      display: flex;
+    }
+  
+    /* 닫기 버튼(X)은 모바일에서만 보이게 */
+    .close-btn {
+      display: block; 
+    }
+  
+    /* 인트로 섹션: 원조아바타 글씨 크기는 그대로 36px 유지하도록 override 없음 */
+    #intro p {
+      font-size: 16px;
+    }
+    .break-mobile {
+      display: block; /* 모바일에서 줄바꿈 */
+    }
+    .hide-pc {
+      display: block; /* 모바일에서 <br> 보이기 */
+    }
+  
+    /* 배너: 세로 배치 */
+    .banners {
+      flex-direction: column;
+      align-items: center;
+    }
+    .banners a img {
+      width: 80%; 
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  
+    /* info-section: 세로 배치 */
+    #info-section .info-container {
+      flex-direction: column;
+      text-align: center;
+      min-height: auto; 
+    }
+    #info-section .info-image,
+    #info-section .info-text {
+      flex: none;
+      width: 100%;
+    }
+    #info-section .info-image img {
+      width: 80%;
+      max-width: 300px;
+    }
+    #info-section .info-text {
+      align-items: center;
+      text-align: center;
+      margin-top: 20px;
+    }
+    #info-section .info-text p {
+      text-align: center;
+      font-size: 16px;
+    }
+  
+    /* community-section: 세로 배치 + 이미지 전체 표시 */
+    #community-section .community-images {
+      flex-direction: column;
+      height: auto;
+      gap: 20px;
+    }
+    #community-section .left-col,
+    #community-section .right-col {
+      width: 100%;
+      height: auto;
+    }
+    #community-section .left-top img,
+    #community-section .left-bottom img,
+    #community-section .right-col img {
+      position: static;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  
+    /* contact-section 폰트 크기 */
+    #contact-section h2 {
+      font-size: 24px;
+    }
+    #contact-section p {
+      font-size: 14px;
+    }
+    #contact-section .contact-buttons {
+      gap: 20px;
+    }
+    #contact-section .contact-button img {
+      width: 90%;
+      max-width: 400px;
+      height: auto;
+    }
+  }
+  
